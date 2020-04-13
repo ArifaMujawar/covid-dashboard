@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 12,
     minWidth: 256,
     textAlign: 'center',
+    margin:'7px'
   },
   header: {
     textAlign: 'center',
