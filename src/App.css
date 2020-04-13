@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #EEEEEE;
+  margin: auto 0;
 }
 
 .App-header {
@@ -15,7 +16,7 @@
 
 .cardCases {
   display: flex;
-  justify-content: space-evenly;
+  justify-content:space-around;
 }
 .Chart {
   height: 300px;
@@ -25,10 +26,10 @@ hr {
   margin: 25px;
   align-self: center;
 }
-.areaChart{
+/* .areaChart{
   width:500px;
   height:400px;
-}
+} */
 footer{
   background-color: #011936;
   color: white;
@@ -48,8 +49,8 @@ footer a {
     align-items: center;
     justify-content: center;
   }
-  .areaChart{
+  /* .areaChart{
     width: 65%vw;
     height: 20%vw;
-  }
+  } */
 }
