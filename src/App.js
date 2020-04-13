@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Covid-19</h1>
+        <h1>COVID-19 Dashboard</h1>
       </header>
       <Country handler={updateCountry} />
 
@@ -77,7 +77,7 @@ function App() {
         </div>
       </div>
       <hr></hr>
-      <footer>Made by Arifa</footer>
+      <footer>© 2020 <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a></footer>
     </div>
   );
 }

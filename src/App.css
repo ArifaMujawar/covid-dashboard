@@ -1,15 +1,16 @@
 .App {
   text-align: center;
+  background-color: #EEEEEE;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #305F72;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #F36886;
 }
 
 .cardCases {
@@ -28,6 +29,17 @@ hr {
   width:500px;
   height:400px;
 }
+footer{
+  background-color: #011936;
+  color: white;
+  padding: 30px;
+  font-size: large;
+}
+footer a {
+  text-decoration: none;
+  color:#0ce5e1;
+}
+
 
 @media screen and (max-width: 992px) {
   .cardCases {

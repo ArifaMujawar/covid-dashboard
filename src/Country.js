@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    marginTop: 20,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -17,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Country(props) {
   const classes = useStyles();
-  const [country, setCountry] = useState('India');
+  const [country, setCountry] = useState("India");
   const handleChange = (event) => {
     props.handler(event.target.value);
-    setCountry(event.target.value)
+    setCountry(event.target.value);
   };
 
   return (
@@ -34,10 +35,10 @@ export default function Country(props) {
           onChange={handleChange}
           label="Country"
         >
+          <MenuItem value="India">India</MenuItem>
           <MenuItem value="Finland">Finland </MenuItem>
           <MenuItem value="Italy">Italy</MenuItem>
           <MenuItem value="Sweden">Sweden</MenuItem>
-          <MenuItem value="India">India</MenuItem>
         </Select>
       </FormControl>
     </div>
