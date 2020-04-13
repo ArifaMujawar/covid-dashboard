@@ -40,44 +40,48 @@ function App() {
         <h1>COVID-19 Dashboard</h1>
       </header>
       <Country handler={updateCountry} />
+      <div className="container">
+        <div className="cardCases">
+          <NumberCard totalCases={todayData.Confirmed} label="Total Cases" />
+          <NumberCard totalCases={todayData.Deaths} label="Deaths" />
+          <NumberCard totalCases={todayData.Recovered} label="Recovered" />
+        </div>
+        <hr></hr>
+        <div className="cardCases">
+          <div>
+            <h4>Total Cases</h4>
+            <Graph
+              weekData={graphData}
+              XAxisDatakey={"Date"}
+              AreaDataKey={"Confirmed"}
+              fill={"#8884d8"}
+            />
+          </div>
+          <div>
+            <h4>Deaths</h4>
+            <Graph
+              weekData={graphData}
+              XAxisDatakey={"Date"}
+              AreaDataKey={"Deaths"}
+              fill={"#df2808"}
+            />
+          </div>
+          <div>
+            <h4>Recovered</h4>
+            <Graph
+              weekData={graphData}
+              XAxisDatakey={"Date"}
+              AreaDataKey={"Recovered"}
+              fill={"#26e760"}
+            />
+          </div>
+        </div>
+        <hr></hr>
+      </div>
 
-      <div className="cardCases">
-        <NumberCard totalCases={todayData.Confirmed} label="Total Cases" />
-        <NumberCard totalCases={todayData.Deaths} label="Deaths" />
-        <NumberCard totalCases={todayData.Recovered} label="Recovered" />
-      </div>
-      <hr></hr>
-      <div className="cardCases">
-        <div>
-          <h4>Total Cases</h4>
-          <Graph
-            weekData={graphData}
-            XAxisDatakey={"Date"}
-            AreaDataKey={"Confirmed"}
-            fill={"#8884d8"}
-          />
-        </div>
-        <div>
-          <h4>Deaths</h4>
-          <Graph
-            weekData={graphData}
-            XAxisDatakey={"Date"}
-            AreaDataKey={"Deaths"}
-            fill={"#df2808"}
-          />
-        </div>
-        <div>
-          <h4>Recovered</h4>
-          <Graph
-            weekData={graphData}
-            XAxisDatakey={"Date"}
-            AreaDataKey={"Recovered"}
-            fill={"#26e760"}
-          />
-        </div>
-      </div>
-      <hr></hr>
-      <footer>© 2020 <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a></footer>
+      <footer>
+        © 2020 <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a>
+      </footer>
     </div>
   );
 }

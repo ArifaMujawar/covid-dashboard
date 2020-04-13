@@ -1,7 +1,13 @@
 .App {
   text-align: center;
   background-color: #EEEEEE;
-  margin: auto 0;
+  
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .App-header {
