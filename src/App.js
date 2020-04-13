@@ -1,24 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import NumberCard from "./NumberCard";
 import Graph from "./Graph";
+import Country from "./Country";
+
 import axios from "axios";
 import moment from "moment";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 
 function App() {
   const [todayData, setTodayData] = useState({});
   const [graphData, setGraphData] = useState({});
-  const country = "Finland";
+  const [country, setCountry] = useState("India");
+
   const getData = async () => {
     const result = await axios(`https://api.covid19api.com/country/${country}`);
     setTodayData(result.data[result.data.length - 1]);
@@ -29,23 +23,24 @@ function App() {
     });
     setGraphData(weekData);
   };
-  const classes = useStyles();
+  function updateCountry(updatedCountry) {
+    setCountry(updatedCountry);
+  }
 
   useEffect(() => {
     getData();
   }, []);
-
+  useEffect(() => {
+    getData();
+  }, [country]);
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Covid-19</h1>
       </header>
-      <div className={classes.root}>
-      <Button variant="contained" color="primary">
-        {country}
-      </Button>
-      </div>
+      <Country handler={updateCountry} />
+
       <div className="cardCases">
         <NumberCard totalCases={todayData.Confirmed} label="Total Cases" />
         <NumberCard totalCases={todayData.Deaths} label="Deaths" />
@@ -82,7 +77,7 @@ function App() {
         </div>
       </div>
       <hr></hr>
-      <footer>Made by me</footer>
+      <footer>Made by Arifa</footer>
     </div>
   );
 }
