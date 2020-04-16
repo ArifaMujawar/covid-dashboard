@@ -7,6 +7,12 @@ import Country from "./Country";
 
 import axios from "axios";
 import moment from "moment";
+import ReactGA from 'react-ga';
+
+const trackingId = "UA-163831151-1"; 
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 
 function App() {
   const [todayData, setTodayData] = useState({});
@@ -78,7 +84,13 @@ function App() {
         </div>
         <hr></hr>
       </div>
-
+    <div>
+    
+    <div>
+    Data Sources
+    </div>  
+    <div>Page views</div>  
+    </div>
       <footer>
         © 2020 <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a>
       </footer>
