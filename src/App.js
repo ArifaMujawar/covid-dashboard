@@ -86,10 +86,7 @@ function App() {
       </div>
     <div>
     
-    <div>
-    Data Sources
-    </div>  
-    <div>Page views</div>  
+    
     </div>
       <footer>
         © 2020 <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a>
