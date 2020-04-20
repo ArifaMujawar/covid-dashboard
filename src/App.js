@@ -3,14 +3,16 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import NumberCard from "./NumberCard";
 import Graph from "./Graph";
-import Country from "./Country";
-import CountrySelector from './country-list';
+import CountrySelector from "./country-list";
 
 import axios from "axios";
 import moment from "moment";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
 
-const trackingId = "UA-163831151-1"; 
+const trackingId = "UA-163831151-1";
 ReactGA.initialize(trackingId);
 
 function App() {
@@ -20,18 +22,38 @@ function App() {
   ReactGA.pageview(window.location.pathname + window.location.search);
 
   const getData = async () => {
-   try{
-    const result = await axios(`https://api.covid19api.com/total/country/${country}`);
-    setTodayData(result.data[result.data.length - 1]);
-    let weekData = result.data.slice(result.data.length - 30);
-    weekData = weekData.map((item) => {
-      item.Date = moment(item.Date).format("MMM Do");
-      return item;
-    });
-    setGraphData(weekData);
-   }catch(e){
-    console.log('error ', e);
-   }
+    try {
+      const result = await axios(
+        `https://api.covid19api.com/total/country/${country}`
+      );
+      console.log("The result is", result);
+      if (result.data.length === 0) {
+        store.addNotification({
+          title: "Message!",
+          message: "This country is not yet supported!",
+          type: "info",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 1000,
+            onScreen: true,
+          },
+        });
+        setCountry("India");
+        return;
+      }
+      setTodayData(result.data[result.data.length - 1]);
+      let weekData = result.data.slice(result.data.length - 30);
+      weekData = weekData.map((item) => {
+        item.Date = moment(item.Date).format("MMM Do");
+        return item;
+      });
+      setGraphData(weekData);
+    } catch (e) {
+      console.log("error ", e);
+    }
   };
   function updateCountry(updatedCountry) {
     setCountry(updatedCountry.label);
@@ -49,9 +71,10 @@ function App() {
       <header className="App-header">
         <h1>COVID-19 Dashboard</h1>
       </header>
-      
-      <CountrySelector onChange={updateCountry}/>
+
+      <CountrySelector onChange={updateCountry} />
       <div className="container">
+        <ReactNotification />
         <div className="cardCases">
           <NumberCard totalCases={todayData.Confirmed} label="Total Cases" />
           <NumberCard totalCases={todayData.Deaths} label="Deaths" />
@@ -89,10 +112,15 @@ function App() {
         </div>
         <hr></hr>
       </div>
-    
+
       <footer>
-      <div>This website makes of data provided by https://covid19api.com/</div>
-       <div className="madeBy">Made by <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a></div>
+        <div>
+          This website makes of data provided by https://covid19api.com/
+        </div>
+        <div className="madeBy">
+          Made by{" "}
+          <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a>
+        </div>
       </footer>
     </div>
   );
