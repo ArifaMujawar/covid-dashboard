@@ -4,6 +4,7 @@ import "./App.css";
 import NumberCard from "./NumberCard";
 import Graph from "./Graph";
 import Country from "./Country";
+import CountrySelector from './country-list';
 
 import axios from "axios";
 import moment from "moment";
@@ -11,13 +12,12 @@ import ReactGA from 'react-ga';
 
 const trackingId = "UA-163831151-1"; 
 ReactGA.initialize(trackingId);
-ReactGA.pageview(window.location.pathname + window.location.search);
-
 
 function App() {
   const [todayData, setTodayData] = useState({});
   const [graphData, setGraphData] = useState({});
   const [country, setCountry] = useState("India");
+  ReactGA.pageview(window.location.pathname + window.location.search);
 
   const getData = async () => {
     const result = await axios(`https://api.covid19api.com/country/${country}`);
@@ -30,7 +30,7 @@ function App() {
     setGraphData(weekData);
   };
   function updateCountry(updatedCountry) {
-    setCountry(updatedCountry);
+    setCountry(updatedCountry.label);
   }
 
   useEffect(() => {
@@ -45,7 +45,8 @@ function App() {
       <header className="App-header">
         <h1>COVID-19 Dashboard</h1>
       </header>
-      <Country handler={updateCountry} />
+      
+      <CountrySelector onChange={updateCountry}/>
       <div className="container">
         <div className="cardCases">
           <NumberCard totalCases={todayData.Confirmed} label="Total Cases" />
@@ -84,12 +85,10 @@ function App() {
         </div>
         <hr></hr>
       </div>
-    <div>
     
-    
-    </div>
       <footer>
-        © 2020 <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a>
+      <div>This website makes of data provided by https://covid19api.com/</div>
+       <div>Made by <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a></div>
       </footer>
     </div>
   );

@@ -4,6 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import CountrySelector from './country-list';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,8 +21,10 @@ export default function Country(props) {
   const classes = useStyles();
   const [country, setCountry] = useState("India");
   const handleChange = (event) => {
-    props.handler(event.target.value);
-    setCountry(event.target.value);
+    // props.handler(event.target.value);
+    // setCountry(event.target.value);
+    console.log(event)
+
   };
 
   return (
@@ -41,6 +44,7 @@ export default function Country(props) {
           <MenuItem value="Sweden">Sweden</MenuItem>
         </Select>
       </FormControl>
+      <CountrySelector onChange={handleChange}/>
     </div>
   );
 }

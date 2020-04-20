@@ -20,6 +20,14 @@
   color: #F36886;
 }
 
+.searchBar{
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 40vw;
+  
+}
+
 .cardCases {
   display: flex;
   justify-content:space-around;
