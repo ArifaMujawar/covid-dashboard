@@ -22,7 +22,7 @@ class CountrySelector extends Component {
   render() {
     return (
       <Select
-        defaultInputValue="Italy"
+        defaultInputValue="India"
         options={this.state.options}
         value={this.state.value}
         onChange={this.changeHandler}

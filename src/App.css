@@ -54,7 +54,9 @@ footer a {
   text-decoration: none;
   color:#0ce5e1;
 }
-
+.madeBy{
+  margin-top: 15px;
+}
 
 @media screen and (max-width: 992px) {
   .cardCases {

@@ -20,7 +20,8 @@ function App() {
   ReactGA.pageview(window.location.pathname + window.location.search);
 
   const getData = async () => {
-    const result = await axios(`https://api.covid19api.com/country/${country}`);
+   try{
+    const result = await axios(`https://api.covid19api.com/total/country/${country}`);
     setTodayData(result.data[result.data.length - 1]);
     let weekData = result.data.slice(result.data.length - 30);
     weekData = weekData.map((item) => {
@@ -28,6 +29,9 @@ function App() {
       return item;
     });
     setGraphData(weekData);
+   }catch(e){
+    console.log('error ', e);
+   }
   };
   function updateCountry(updatedCountry) {
     setCountry(updatedCountry.label);
@@ -88,7 +92,7 @@ function App() {
     
       <footer>
       <div>This website makes of data provided by https://covid19api.com/</div>
-       <div>Made by <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a></div>
+       <div className="madeBy">Made by <a href="https://arifa-mujawar.netlify.com"> Arifa Mujawar </a></div>
       </footer>
     </div>
   );
