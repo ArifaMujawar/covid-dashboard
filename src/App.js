@@ -28,8 +28,6 @@ function App() {
         `https://api.covid19api.com/total/country/${country}`,
       );
 
-      console.log('The fetched data is', result.data);
-
       if (result.data.length === 0) {
         store.addNotification({
           title: 'Message!',
@@ -51,8 +49,6 @@ function App() {
       const todaysData = result.data[result.data.length - 1];
       todaysData.Active =
         todaysData.Confirmed - (todaysData.Recovered + todaysData.Deaths);
-
-      console.log('Todays data object is', todaysData);
 
       setTodayData(todaysData);
       let weekData = result.data.slice(result.data.length - 30);
