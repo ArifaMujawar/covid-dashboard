@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 import {
   AreaChart,
   Area,
@@ -7,7 +7,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Tooltip,
-} from "recharts";
+} from 'recharts';
 
 export default class Graph extends PureComponent {
   render() {
